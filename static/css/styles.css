@@ -1,0 +1,78 @@
+* {
+	margin: 0; padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 16px;
+	line-height: 1.3em;
+}
+
+h1, h2 {
+	font-weight: normal;
+	line-height: 1.3em;
+}
+
+a {
+	color: #00f;
+}
+
+a:visited {
+	color: #99f;
+}
+
+header {
+	background: #333;
+}
+
+.logo a {
+	display: block;
+	padding: 10px;
+	color: #fff;
+	text-decoration: none;
+}
+
+.wrapper {
+	padding: 10px;
+}
+
+.feed {
+	font-size: 20px;
+	line-height: 1.3em;
+}
+
+.feed .story {
+	padding: 5px 0;
+}
+
+.feed .site {
+	font-size: 80%;
+	line-height: 1em;
+	color: #666;
+}
+
+li[data-origin="news.ycombinator.com"] .icon,
+li[data-origin="theverge.com"] .icon,
+li[data-origin="polygon.com"] .icon {
+	content: '';
+	display: inline-block;
+	margin: 0 10px 0 0;
+	width: 16px;
+	height: 16px;
+	background: url('/img/icons.png');
+}
+
+li[data-origin="news.ycombinator.com"] .icon {
+	background-position: 0 0;
+}
+
+li[data-origin="theverge.com"] .icon {
+	background-position: 0 -16px;
+}
+
+li[data-origin="polygon.com"] .icon {
+	background-position: 0 -32px;
+}
