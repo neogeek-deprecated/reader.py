@@ -44,14 +44,23 @@ header {
 	line-height: 1.3em;
 }
 
-.feed .story {
-	padding: 5px 0;
+.story {
+	margin: 5px 0 10px;
+	position: relative;
+	clear: both;
 }
 
-.feed .site {
+.story .site {
 	font-size: 80%;
 	line-height: 1em;
 	color: #666;
+}
+
+.story .actions a {
+	font-size: 75%;
+	line-height: 1em;
+	color: #999;
+	text-decoration: none;
 }
 
 li[data-origin="news.ycombinator.com"] .icon,

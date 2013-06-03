@@ -3,6 +3,7 @@ from flask import Flask, make_response, render_template, send_from_directory
 app = Flask(__name__, template_folder='templates/')
 
 from reader import Reader
+from fetch_remote_file import *
 
 
 @app.route('/css/<path:filename>')
@@ -29,22 +30,24 @@ def home():
     return render_template('app.html')
 
 
-@app.route('/feed')
-def feed():
+@app.route('/feeds')
+def feeds():
 
     reader.run()
 
-    return make_response((json.dumps({'data': reader.stories}), 200, {
+    html_template = file_get_contents('templates/stories.html')
+
+    return make_response((json.dumps({'stories': reader.stories, 'template': html_template}), 200, {
         'Access-Control-Allow-Origin': '*',
         'Content-type': 'application/json'
     }))
 
 if __name__ == '__main__':
 
-    reader = Reader()
+    reader = Reader(5)
 
     reader.add('https://news.ycombinator.com/rss')
     reader.add('http://theverge.com/rss/index.xml')
     reader.add('http://polygon.com/rss/index.xml')
 
-    app.run(debug=True)
+    app.run()
