@@ -9,15 +9,24 @@ def fetch_remote_file(url, cache, expire):
 
     if not os.path.isfile(cache) or int(os.path.getmtime(cache)) < int(expire):
 
-        output = urllib2.urlopen(url).read()
+        content = urllib2.urlopen(url).read()
         cache = open(cache, 'w')
-        cache.write(output)
+        cache.write(content)
         cache.close()
 
     else:
 
-        cache = open(cache, 'r')
-        output = cache.read()
-        cache.close()
+        content = file_get_contents(cache)
 
-    return output
+    return content
+
+
+def file_get_contents(file):
+
+    if os.path.isfile(file):
+
+        file = open(file, 'r')
+        content = file.read()
+        file.close()
+
+        return content
