@@ -9,6 +9,8 @@ from fetch_remote_file import *
 
 class Reader():
 
+    cache = 'cache/'
+
     expire = 0
 
     feeds = []
@@ -17,10 +19,13 @@ class Reader():
 
     def __init__(self, expire=15):
 
-        if os.path.isfile('cache/hashes.dict') and os.path.isfile('cache/stories.dict'):
+        if not os.path.exists(self.cache):
+            os.makedirs(self.cache)
 
-            self.hashes = pickle.load(open('cache/hashes.dict', 'r'))
-            self.stories = pickle.load(open('cache/stories.dict', 'r'))
+        if os.path.isfile(self.cache + 'hashes.dict') and os.path.isfile(self.cache + 'stories.dict'):
+
+            self.hashes = pickle.load(open(self.cache + 'hashes.dict', 'r'))
+            self.stories = pickle.load(open(self.cache + 'stories.dict', 'r'))
 
         self.expire = expire
 
@@ -72,9 +77,9 @@ class Reader():
 
         for url in self.feeds:
 
-            content = fetch_remote_file(url, 'cache/' + sha256(url).hexdigest(), self.expire)
+            content = fetch_remote_file(url, self.cache + sha256(url).hexdigest(), self.expire)
 
             self.parse(url, content)
 
-        pickle.dump(self.hashes, open('cache/hashes.dict', 'wb'))
-        pickle.dump(self.stories, open('cache/stories.dict', 'wb'))
+        pickle.dump(self.hashes, open(self.cache + 'hashes.dict', 'wb'))
+        pickle.dump(self.stories, open(self.cache + 'stories.dict', 'wb'))
