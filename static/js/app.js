@@ -10,27 +10,63 @@ if ('localStorage' in window) {
 
 }
 
-$.getJSON('/feeds', function (data) {
+$('html').addClass('loading');
 
-	if (config) {
+setTimeout(function () {
 
-		for (var key in data.stories) {
+	$.getJSON('/feeds', function (data) {
 
-			if (config.deleted.indexOf(data.stories[key]['hash']) != -1) {
-				data.stories[key] = [];
+		if (config) {
+
+			for (var key in data.stories) {
+
+				if (config.deleted.indexOf(data.stories[key]['hash']) != -1) {
+					data.stories[key] = [];
+				}
+
 			}
 
 		}
 
+		$('html').removeClass('loading');
+
+		var template = Handlebars.compile(data.template);
+
+		$('.feed').html(template(data.stories));
+
+	});
+
+}, 10);
+
+$(document).on('click', 'a[href="#nav"]', function (e) {
+
+	e.preventDefault();
+
+	$('.nav ul').toggle();
+
+}).on('click', 'a[href="#reload"]', function (e) {
+
+	e.preventDefault();
+
+	window.location.reload();
+
+}).on('click', 'a[href="#markallasread"]', function (e) {
+
+	e.preventDefault();
+
+}).on('click', 'a[href="#resetapp"]', function (e) {
+
+	e.preventDefault();
+
+	if (confirm('Are you sure you want to reset?')) {
+
+		localStorage.setItem('config', JSON.stringify({ deleted: [] }));
+
+		window.location.reload();
+
 	}
 
-	var template = Handlebars.compile(data.template);
-
-	$('.feed').html(template(data.stories));
-
-});
-
-$(document).on('click', 'a[href="#readlater"]', function (e) {
+}).on('click', 'a[href="#readlater"]', function (e) {
 
 	e.preventDefault();
 

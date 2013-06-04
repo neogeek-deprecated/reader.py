@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
-<title>Feed Reader</title>
+<title>Live Reader</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
 </head>
 
@@ -11,7 +11,16 @@
 
 <header>
 
-	<h1 class="logo"><a href="/">Feed Reader</a></h1>
+	<h1 class="logo"><a href="/">Live Reader</a></h1>
+
+	<nav class="nav">
+		<a href="#nav" class="pancake">☰</a>
+		<ul>
+			<li><a href="#reload">Reload</a></li>
+			<li><a href="#markallasread">Mark all as read</a></li>
+			<li><a href="#resetapp">Reset App</a></li>
+		</ul>
+	</nav>
 
 </header>
 
