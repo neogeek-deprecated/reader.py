@@ -125,10 +125,6 @@ li[data-origin="polygon.com"] .icon {
 	background: url('/img/icons.png');
 }
 
-li[data-origin="news.ycombinator.com"] .icon {
-	background-position: 0 0;
-}
-
 li[data-origin="theverge.com"] .icon {
 	background-position: 0 -16px;
 }
