@@ -43,7 +43,7 @@ def feeds():
 
     html_template = file_get_contents('templates/stories.html')
 
-    return make_response((json.dumps({'stories': reader.stories, 'template': html_template}), 200, {
+    return make_response((json.dumps({'stories': reader.stories[0:100], 'template': html_template}), 200, {
         'Access-Control-Allow-Origin': '*',
         'Content-type': 'application/json'
     }))

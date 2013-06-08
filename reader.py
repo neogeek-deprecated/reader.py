@@ -81,5 +81,5 @@ class Reader():
 
             self.parse(url, content)
 
-        pickle.dump(self.hashes, open(self.cache + 'hashes.dict', 'wb'))
-        pickle.dump(self.stories, open(self.cache + 'stories.dict', 'wb'))
+        pickle.dump(self.hashes[0:1000], open(self.cache + 'hashes.dict', 'wb'))
+        pickle.dump(self.stories[0:1000], open(self.cache + 'stories.dict', 'wb'))
