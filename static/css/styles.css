@@ -25,12 +25,11 @@ a:visited {
 header {
 	background: #333;
 	overflow: auto;
-	z-index: 2;
 }
 
 .loading {
 	height: 100%;
-	background: url('/img/loading.gif') no-repeat center center;
+	background: url('/img/loader.gif') no-repeat center center;
 }
 
 .logo {
@@ -114,15 +113,18 @@ header {
 	color: #999;
 }
 
-li[data-origin="news.ycombinator.com"] .icon,
-li[data-origin="theverge.com"] .icon,
-li[data-origin="polygon.com"] .icon {
+.feed p {
+	padding: 50px 0;
+	text-align: center;
+}
+
+.icon {
 	content: '';
 	display: inline-block;
 	margin: 0 10px 0 0;
 	width: 16px;
 	height: 16px;
-	background: url('/img/icons.png');
+	background: url('/img/icons.png') no-repeat;
 }
 
 li[data-origin="theverge.com"] .icon {
