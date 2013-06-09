@@ -1,38 +1,59 @@
 'use strict';
 
-if ('localStorage' in window) {
+function reset_all_config () {
 
-	if (!localStorage.getItem('config')) {
-		localStorage.setItem('config', JSON.stringify({ deleted: [] }));
-	}
-
-	var config = JSON.parse(localStorage.getItem('config'));
+	localStorage.setItem('config', JSON.stringify({ read: [] }));
 
 }
 
-$('html').addClass('loading');
+function hide_read_stories (data) {
+
+	for (var key in data.stories) {
+
+		if (config.read.indexOf(data.stories[key]['hash']) != -1) {
+			data.stories[key] = [];
+			data.count--;
+		}
+
+	}
+
+	return data;
+
+}
+
+function mark_story_as_read (hash) {
+
+	if (config.read.indexOf(hash) == -1) {
+		config.read.push(hash);
+	}
+
+	localStorage.setItem('config', JSON.stringify(config));
+
+}
+
+if (!localStorage.getItem('config')) {
+
+	reset_all_config();
+
+}
+
+var html = document.querySelector('html'),
+	feed = document.querySelector('.feed'),
+	config = JSON.parse(localStorage.getItem('config'));
+
+html.setAttribute('class', 'loading');
 
 setTimeout(function () {
 
 	$.getJSON('/feeds', function (data) {
 
-		if (config) {
+		html.removeAttribute('class');
 
-			for (var key in data.stories) {
-
-				if (config.deleted.indexOf(data.stories[key]['hash']) != -1) {
-					data.stories[key] = [];
-				}
-
-			}
-
-		}
-
-		$('html').removeClass('loading');
+		data = hide_read_stories(data);
 
 		var template = Handlebars.compile(data.template);
 
-		$('.feed').html(template(data.stories));
+		feed.innerHTML = template(data);
 
 	});
 
@@ -54,41 +75,39 @@ $(document).on('click', 'a[href="#nav"]', function (e) {
 
 	e.preventDefault();
 
-}).on('click', 'a[href="#resetapp"]', function (e) {
+	$('.story').each(function (key, value) {
+
+		mark_story_as_read(value.getAttribute('data-hash'));
+
+	});
+
+	window.location.reload();
+
+}).on('click', 'a[href="#resetreadstories"]', function (e) {
 
 	e.preventDefault();
 
-	if (confirm('Are you sure you want to reset?')) {
+	if (confirm('Reset read stories?')) {
 
-		localStorage.setItem('config', JSON.stringify({ deleted: [] }));
+		reset_all_config();
 
 		window.location.reload();
 
 	}
 
-}).on('click', 'a[href="#readlater"]', function (e) {
+}).on('click', 'a[href="#markasread"]', function (e) {
 
 	e.preventDefault();
 
-}).on('click', 'a[href="#delete"]', function (e) {
+	mark_story_as_read(this.parentNode.parentNode.getAttribute('data-hash'));
 
-	e.preventDefault();
+	var ul = this.parentNode.parentNode.parentNode;
 
-	if (confirm('Are you sure you want to delete this story?')) {
+	ul.removeChild(this.parentNode.parentNode);
 
-		var hash = this.parentNode.parentNode.getAttribute('data-hash');
+	if (!ul.getElementsByTagName('li').length) {
 
-		if (config) {
-
-			if (config.deleted.indexOf(hash) == -1) {
-				config.deleted.push(hash);
-			}
-
-			localStorage.setItem('config', JSON.stringify(config));
-
-		}
-
-		this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+		feed.innerHTML = '<p>No new stories.</p>';
 
 	}
 
