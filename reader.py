@@ -11,13 +11,13 @@ class Reader():
 
     cache = 'cache/'
 
-    expire = 0
+    expire = 5
 
     feeds = []
     hashes = []
     stories = []
 
-    def __init__(self, expire=15):
+    def __init__(self):
 
         if not os.path.exists(self.cache):
             os.makedirs(self.cache)
@@ -26,8 +26,6 @@ class Reader():
 
             self.hashes = pickle.load(open(self.cache + 'hashes.dict', 'r'))
             self.stories = pickle.load(open(self.cache + 'stories.dict', 'r'))
-
-        self.expire = expire
 
     def add(self, url):
 

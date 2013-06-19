@@ -33,8 +33,9 @@ def home():
 @app.route('/feeds')
 def feeds():
 
-    reader = Reader(5)
+    reader = Reader()
 
+    reader.add('http://daringfireball.net/index.xml')
     reader.add('https://news.ycombinator.com/rss')
     reader.add('http://theverge.com/rss/index.xml')
     reader.add('http://polygon.com/rss/index.xml')

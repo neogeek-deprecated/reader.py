@@ -27,9 +27,14 @@ header {
 	overflow: auto;
 }
 
+header a {
+	-webkit-touch-callout: none;
+}
+
 .loading {
 	height: 100%;
-	background: url('/img/loader.gif') no-repeat center center;
+	background: url('/img/spinner.gif') no-repeat center center;
+	background-size: 48px 48px;
 }
 
 .logo {
@@ -42,6 +47,7 @@ header {
 	font-size: 26px;
 	color: #fff;
 	text-decoration: none;
+	-webkit-tap-highlight-color: transparent;
 }
 
 .nav {
@@ -107,12 +113,6 @@ header {
 	color: #666;
 }
 
-.story .actions a {
-	font-size: 75%;
-	line-height: 1em;
-	color: #999;
-}
-
 .feed p {
 	padding: 50px 0;
 	text-align: center;
@@ -121,10 +121,11 @@ header {
 .icon {
 	content: '';
 	display: inline-block;
-	margin: 0 10px 0 0;
+	margin: 0 5px 0 0;
 	width: 16px;
 	height: 16px;
 	background: url('/img/icons.png') no-repeat;
+	background-size: 16px 64px;
 }
 
 li[data-origin="theverge.com"] .icon {
@@ -133,4 +134,8 @@ li[data-origin="theverge.com"] .icon {
 
 li[data-origin="polygon.com"] .icon {
 	background-position: 0 -32px;
+}
+
+li[data-origin="daringfireball.net"] .icon {
+	background-position: 0 -48px;
 }
