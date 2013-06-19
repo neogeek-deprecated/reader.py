@@ -95,20 +95,4 @@ $(document).on('click', 'a[href="#nav"]', function (e) {
 
 	}
 
-}).on('click', 'a[href="#markasread"]', function (e) {
-
-	e.preventDefault();
-
-	mark_story_as_read(this.parentNode.parentNode.getAttribute('data-hash'));
-
-	var ul = this.parentNode.parentNode.parentNode;
-
-	ul.removeChild(this.parentNode.parentNode);
-
-	if (!ul.getElementsByTagName('li').length) {
-
-		feed.innerHTML = '<p>No new stories.</p>';
-
-	}
-
 });
