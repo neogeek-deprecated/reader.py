@@ -24,6 +24,7 @@
 
 				if (config.read.indexOf(data.stories[key].hash) !== -1) {
 					data.stories[key] = [];
+					data.count--;
 				}
 
 			}
