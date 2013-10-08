@@ -31,6 +31,15 @@ class Reader():
 
         self.feeds.append(url)
 
+    def run(self):
+
+        for url in self.feeds:
+
+            self.parse(url, fetch_remote_file(url, self.cache + sha256(url).hexdigest(), self.expire))
+
+        pickle.dump(self.hashes[0:1000], open(self.cache + 'hashes.dict', 'wb'))
+        pickle.dump(self.stories[0:1000], open(self.cache + 'stories.dict', 'wb'))
+
     def parse(self, url, content):
 
         dom = minidom.parseString(content)
@@ -70,14 +79,3 @@ class Reader():
                 })
 
                 self.hashes.append(hash)
-
-    def run(self):
-
-        for url in self.feeds:
-
-            content = fetch_remote_file(url, self.cache + sha256(url).hexdigest(), self.expire)
-
-            self.parse(url, content)
-
-        pickle.dump(self.hashes[0:1000], open(self.cache + 'hashes.dict', 'wb'))
-        pickle.dump(self.stories[0:1000], open(self.cache + 'stories.dict', 'wb'))

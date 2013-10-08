@@ -33,7 +33,7 @@ header a {
 
 .loading {
 	height: 100%;
-	background: url('/img/spinner.gif') no-repeat center center;
+	background: url('/static/img/spinner.gif') no-repeat center center;
 	background-size: 48px 48px;
 }
 
@@ -124,7 +124,7 @@ header a {
 	margin: 0 5px 0 0;
 	width: 16px;
 	height: 16px;
-	background: url('/img/icons.png') no-repeat;
+	background: url('/static/img/icons.png') no-repeat;
 	background-size: 16px 64px;
 }
 
