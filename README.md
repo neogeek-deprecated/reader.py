@@ -14,4 +14,4 @@ Reader.py is a simple feed reader built to work on Heroku.
 
 ##Screenshot
 
-![screenshot](http://f.cl.ly/items/2n361i2Q3o2y2p3K0t45/screenshot.jpg)
+![screenshot](http://f.cl.ly/items/2v0Z2x0A421a2b1H3Q2p/readerpy-screenshot.png)
