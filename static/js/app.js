@@ -57,7 +57,7 @@
 
 	setTimeout(function () {
 
-		$.getJSON('/feeds', function (data) {
+		$.getJSON('/feeds').done(function (data) {
 
 			var template;
 
@@ -68,6 +68,12 @@
 			template = Handlebars.compile(data.template);
 
 			feed.innerHTML = template(data);
+
+		}).fail(function () {
+
+			html.removeAttribute('class');
+
+			feed.innerHTML = '<p>Error processing request.</p>';
 
 		});
 
