@@ -3,20 +3,24 @@ import urllib2
 import datetime
 
 
-def fetch_remote_file(url, cache, expire):
+def fetch_remote_file(url, cache = '', expire = 0):
 
-    expire = (datetime.datetime.now() - datetime.timedelta(minutes=expire)).strftime('%s')
+    if cache and expire:
 
-    if not os.path.isfile(cache) or int(os.path.getmtime(cache)) < int(expire):
+        expire = (datetime.datetime.now() - datetime.timedelta(minutes=expire)).strftime('%s')
 
-        content = urllib2.urlopen(url).read()
-        cache = open(cache, 'w')
-        cache.write(content)
-        cache.close()
+        if not os.path.isfile(cache) or int(os.path.getmtime(cache)) < int(expire):
+
+            content = urllib2.urlopen(url).read()
+            file_put_contents(cache, content)
+
+        else:
+
+            content = file_get_contents(cache)
 
     else:
 
-        content = file_get_contents(cache)
+        content = urllib2.urlopen(url).read()
 
     return content
 
@@ -30,3 +34,12 @@ def file_get_contents(file):
         file.close()
 
         return content
+
+
+def file_put_contents(file, content):
+
+    file = open(file, 'w')
+    file.write(content)
+    file.close()
+
+    return content
