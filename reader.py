@@ -42,40 +42,45 @@ class Reader():
 
     def parse(self, url, content):
 
-        dom = minidom.parseString(content)
+        try:
 
-        for story in dom.getElementsByTagName('entry'):
+            dom = minidom.parseString(content)
 
-            title = story.getElementsByTagName('title')[0].childNodes[0].nodeValue
-            link = story.getElementsByTagName('link')[0].getAttribute('href')
-            hash = sha256(link).hexdigest()
+            for story in dom.getElementsByTagName('entry'):
 
-            if hash not in self.hashes:
+                title = story.getElementsByTagName('title')[0].childNodes[0].nodeValue
+                link = story.getElementsByTagName('link')[0].getAttribute('href')
+                hash = sha256(link).hexdigest()
 
-                self.stories.insert(0, {
-                    'origin': urlparse(url).netloc,
-                    'site': urlparse(link).netloc,
-                    'title': title,
-                    'link': link,
-                    'hash': hash
-                })
+                if hash not in self.hashes:
 
-                self.hashes.append(hash)
+                    self.stories.insert(0, {
+                        'origin': urlparse(url).netloc,
+                        'site': urlparse(link).netloc,
+                        'title': title,
+                        'link': link,
+                        'hash': hash
+                    })
 
-        for story in dom.getElementsByTagName('item'):
+                    self.hashes.append(hash)
 
-            title = story.getElementsByTagName('title')[0].childNodes[0].nodeValue
-            link = story.getElementsByTagName('link')[0].childNodes[0].nodeValue
-            hash = sha256(link).hexdigest()
+            for story in dom.getElementsByTagName('item'):
 
-            if hash not in self.hashes:
+                title = story.getElementsByTagName('title')[0].childNodes[0].nodeValue
+                link = story.getElementsByTagName('link')[0].childNodes[0].nodeValue
+                hash = sha256(link).hexdigest()
 
-                self.stories.insert(0, {
-                    'origin': urlparse(url).netloc,
-                    'site': urlparse(link).netloc,
-                    'title': title,
-                    'link': link,
-                    'hash': hash
-                })
+                if hash not in self.hashes:
 
-                self.hashes.append(hash)
+                    self.stories.insert(0, {
+                        'origin': urlparse(url).netloc,
+                        'site': urlparse(link).netloc,
+                        'title': title,
+                        'link': link,
+                        'hash': hash
+                    })
+
+                    self.hashes.append(hash)
+
+        except Exception, e:
+            print e

@@ -11,8 +11,13 @@ def fetch_remote_file(url, cache = '', expire = 0):
 
         if not os.path.isfile(cache) or int(os.path.getmtime(cache)) < int(expire):
 
-            content = urllib2.urlopen(url).read()
-            file_put_contents(cache, content)
+            try:
+
+                content = urllib2.urlopen(url).read()
+                file_put_contents(cache, content)
+
+            except Exception, e:
+                print e
 
         else:
 
