@@ -1,5 +1,7 @@
 CACHE MANIFEST
 
+# version 0.1
+
 CACHE:
 /
 /static/css/styles.css
@@ -7,8 +9,8 @@ CACHE:
 /static/img/spinner.gif
 /static/js/app.js
 
-http://code.jquery.com/jquery-2.0.3.min.js
-http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js
+http://code.jquery.com/jquery-2.1.0.min.js
+http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js
 
 NETWORK:
 /feeds

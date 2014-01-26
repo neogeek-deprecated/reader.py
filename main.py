@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, make_response
+from flask import Flask, render_template, make_response
 app = Flask(__name__)
 
 from reader import Reader
@@ -11,9 +11,7 @@ config = json.loads(file_get_contents('config.json'))
 @app.route('/')
 def home():
 
-    return make_response(file_get_contents('templates/app.html'), 200, {
-        'Content-type': 'text/html'
-    })
+    return render_template('app.html')
 
 @app.route('/feeds')
 def feeds():
