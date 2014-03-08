@@ -125,7 +125,7 @@ header a {
 	width: 16px;
 	height: 16px;
 	background: url('/static/img/icons.png') no-repeat;
-	background-size: 16px 64px;
+	background-size: 16px 80px;
 }
 
 li[data-origin="theverge.com"] .icon {
@@ -138,4 +138,8 @@ li[data-origin="polygon.com"] .icon {
 
 li[data-origin="daringfireball.net"] .icon {
 	background-position: 0 -48px;
+}
+
+li[data-origin="news.layervault.com"] .icon {
+	background-position: 0 -64px;
 }

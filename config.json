@@ -2,6 +2,7 @@
     "feeds": [
         "http://daringfireball.net/index.xml",
         "https://news.ycombinator.com/rss",
+        "https://news.layervault.com/?format=rss",
         "http://theverge.com/rss/index.xml",
         "http://polygon.com/rss/index.xml"
     ]
