@@ -1,6 +1,6 @@
 import os
-import urllib2
 import datetime
+import requests
 
 
 def fetch_remote_file(url, cache = '', expire = 0):
@@ -13,7 +13,7 @@ def fetch_remote_file(url, cache = '', expire = 0):
 
             try:
 
-                content = urllib2.urlopen(url).read()
+                content = requests.get(url, verify=False).text.encode('utf-8')
                 file_put_contents(cache, content)
 
             except Exception, e:
@@ -25,7 +25,7 @@ def fetch_remote_file(url, cache = '', expire = 0):
 
     else:
 
-        content = urllib2.urlopen(url).read()
+        content = requests.get(url, verify=False).text.encode('utf-8')
 
     return content
 
