@@ -128,18 +128,18 @@ header a {
     background-size: 16px 80px;
 }
 
-li[data-origin="theverge.com"] .icon {
+li[data-origin*="theverge.com"] .icon {
     background-position: 0 -16px;
 }
 
-li[data-origin="polygon.com"] .icon {
+li[data-origin*="polygon.com"] .icon {
     background-position: 0 -32px;
 }
 
-li[data-origin="daringfireball.net"] .icon {
+li[data-origin*="daringfireball.net"] .icon {
     background-position: 0 -48px;
 }
 
-li[data-origin="news.layervault.com"] .icon {
+li[data-origin*="designernews.co"] .icon {
     background-position: 0 -64px;
 }
