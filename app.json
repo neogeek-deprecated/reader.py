@@ -1,0 +1,9 @@
+{
+  "name": "reader.py",
+  "description": "Reader.py is a simple feed reader built to work on Heroku.",
+  "repository": "https://github.com/neogeek/reader.py",
+  "keywords": [
+    "feed",
+    "reader"
+  ]
+}
