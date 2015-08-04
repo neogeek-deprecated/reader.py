@@ -2,8 +2,6 @@
 
     'use strict';
 
-    /*global window, document, confirm, $, Handlebars */
-
     var html = document.querySelector('html'),
         feed = document.querySelector('.feed'),
         config = null;
