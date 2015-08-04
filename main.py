@@ -28,7 +28,7 @@ def feeds():
     return make_response(json.dumps({
             'count': len(stories),
             'stories': stories,
-            'template': file_get_contents('templates/stories.html')
+            'template': file_get_contents('templates/stories.hbs')
         }), 200, {
             'Content-type': 'application/json'
         })
