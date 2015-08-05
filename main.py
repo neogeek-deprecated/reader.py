@@ -13,7 +13,7 @@ def home():
 
     return render_template('app.html')
 
-@app.route('/feeds')
+@app.route('/feed')
 def feeds():
 
     reader = Reader()

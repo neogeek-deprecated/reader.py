@@ -13,4 +13,4 @@ http://code.jquery.com/jquery-2.1.4.js
 http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js
 
 NETWORK:
-/feeds
+/feed

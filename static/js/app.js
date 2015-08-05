@@ -55,7 +55,7 @@
 
     setTimeout(function () {
 
-        $.getJSON('/feeds').done(function (data) {
+        $.getJSON('/feed').done(function (data) {
 
             var template;
 
