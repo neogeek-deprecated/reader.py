@@ -81,7 +81,7 @@
 
         e.preventDefault();
 
-        $('.nav ul').toggle();
+        $('nav ul').toggle();
 
     }).on('click', 'a[href="#reload"]', function (e) {
 
