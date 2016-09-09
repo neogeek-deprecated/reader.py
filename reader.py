@@ -9,7 +9,7 @@ from fetch_remote_file import *
 
 class Reader():
 
-    cache = 'cache/'
+    cache = '/tmp/'
 
     expire = 5
 
