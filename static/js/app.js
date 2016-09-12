@@ -8,7 +8,7 @@
 
     function reset_config() {
 
-        window.localStorage.setItem('config', JSON.stringify({ read: [] }));
+        window.localStorage.setItem('config', JSON.stringify({'read': []}));
 
     }
 
