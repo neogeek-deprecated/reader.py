@@ -8,9 +8,8 @@ CACHE:
 /static/img/icons.png
 /static/img/spinner.gif
 /static/js/app.js
-
-http://code.jquery.com/jquery-2.1.4.js
-http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js
+/static/js/vendor/handlebars.min.js
+/static/js/vendor/jquery.min.js
 
 NETWORK:
 /feed

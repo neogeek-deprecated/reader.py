@@ -2,8 +2,8 @@
 
     'use strict';
 
-    var html = document.querySelector('html'),
-        feed = document.querySelector('.feed'),
+    var $html = $('html'),
+        $feed = $('.feed'),
         config = null;
 
     function reset_all_config() {
@@ -51,7 +51,7 @@
 
     config = JSON.parse(window.localStorage.getItem('config'));
 
-    html.setAttribute('class', 'loading');
+    $html.addClass('loading');
 
     setTimeout(function () {
 
@@ -59,19 +59,19 @@
 
             var template;
 
-            html.removeAttribute('class');
+            $html.removeClass('loading');
 
             data = hide_read_stories(data);
 
             template = Handlebars.compile(data.template);
 
-            feed.innerHTML = template(data);
+            $feed.html(template(data));
 
         }).fail(function () {
 
-            html.removeAttribute('class');
+            $html.removeAttribute('loading');
 
-            feed.innerHTML = '<p>Error processing request.</p>';
+            $feed.html('<p>Error processing request.</p>');
 
         });
 
@@ -93,9 +93,9 @@
 
         e.preventDefault();
 
-        $('.story').each(function (key, value) {
+        $('.story').each(function () {
 
-            mark_story_as_read(value.getAttribute('data-hash'));
+            mark_story_as_read($(this).attr('data-hash'));
 
         });
 
