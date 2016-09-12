@@ -20,13 +20,11 @@
 
     }
 
-    function mark_story_as_read(hash) {
+    function mark_stories_as_read(stories) {
 
-        if (config.read.indexOf(hash) === -1) {
-            config.read.push(hash);
-        }
-
-        window.localStorage.setItem('config', JSON.stringify(config));
+        window.localStorage.setItem('config', JSON.stringify({
+            'read': JSON.stringify(config.read.concat(stories))
+        }));
 
     }
 
@@ -80,11 +78,9 @@
 
         e.preventDefault();
 
-        $('.story').each(function () {
-
-            mark_story_as_read($(this).attr('data-hash'));
-
-        });
+        mark_stories_as_read($('.story').map(function () {
+            return $(this).attr('data-hash');
+        }).toArray());
 
         window.location.reload();
 
