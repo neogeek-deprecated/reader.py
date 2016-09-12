@@ -12,24 +12,11 @@
 
     }
 
-    function hide_read_stories(data) {
+    function hide_read_stories(stories) {
 
-        var key;
-
-        for (key in data.stories) {
-
-            if (data.stories.hasOwnProperty(key)) {
-
-                if (config.read.indexOf(data.stories[key].hash) !== -1) {
-                    data.stories[key] = [];
-                    data.count--;
-                }
-
-            }
-
-        }
-
-        return data;
+        return stories.filter(function (story) {
+            return config.read.indexOf(story.hash) === -1;
+        });
 
     }
 
@@ -61,11 +48,11 @@
 
             $html.removeClass('loading');
 
-            data = hide_read_stories(data);
-
             template = Handlebars.compile(data.template);
 
-            $feed.html(template(data));
+            $feed.html(template({
+                stories: hide_read_stories(data.stories)
+            }));
 
         }).fail(function () {
 
