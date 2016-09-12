@@ -88,18 +88,6 @@
 
         window.location.reload();
 
-    }).on('click', 'a[href="#resetreadstories"]', function (e) {
-
-        e.preventDefault();
-
-        if (confirm('Reset read stories?')) {
-
-            reset_config();
-
-            window.location.reload();
-
-        }
-
     });
 
 }());
