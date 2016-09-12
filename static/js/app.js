@@ -6,7 +6,7 @@
         $feed = $('.feed'),
         config = null;
 
-    function reset_all_config() {
+    function reset_config() {
 
         window.localStorage.setItem('config', JSON.stringify({ read: [] }));
 
@@ -45,7 +45,7 @@
 
     if (!window.localStorage.getItem('config')) {
 
-        reset_all_config();
+        reset_config();
 
     }
 
@@ -107,7 +107,7 @@
 
         if (confirm('Reset read stories?')) {
 
-            reset_all_config();
+            reset_config();
 
             window.location.reload();
 
