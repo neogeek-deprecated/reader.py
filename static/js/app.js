@@ -12,7 +12,7 @@
 
     }
 
-    function hide_read_stories(stories) {
+    function return_unread_stories(stories) {
 
         return stories.filter(function (story) {
             return config.read.indexOf(story.hash) === -1;
@@ -51,7 +51,7 @@
             template = Handlebars.compile(data.template);
 
             $feed.html(template({
-                stories: hide_read_stories(data.stories)
+                stories: return_unread_stories(data.stories)
             }));
 
         }).fail(function () {
