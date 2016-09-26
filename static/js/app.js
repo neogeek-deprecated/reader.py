@@ -23,7 +23,7 @@
     function mark_stories_as_read(stories) {
 
         window.localStorage.setItem('config', JSON.stringify({
-            'read': JSON.stringify(config.read.concat(stories))
+            'read': config.read.concat(stories)
         }));
 
     }
